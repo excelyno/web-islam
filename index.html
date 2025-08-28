@@ -470,6 +470,68 @@
         .light-theme .principle-icon { color: var(--accent2-light); }
         .dark-theme .principle-icon { color: var(--accent1-dark); }
         .principle-title { font-family: var(--font-heading); font-size: 1.5rem; }
+        
+        /* --- RUJUKAN / REFERENCES SECTION --- */
+        .rujukan-card {
+            margin-bottom: 2.5rem;
+            padding: 2rem;
+            border-left: 5px solid;
+        }
+        .light-theme .rujukan-card { border-color: var(--accent1-light); background-color: rgba(0,0,0,0.02); }
+        .dark-theme .rujukan-card { border-color: var(--accent2-dark); background-color: rgba(255,255,255,0.02); }
+        
+        .rujukan-card .source-type {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .light-theme .rujukan-card .source-type { color: var(--accent2-light); }
+        .dark-theme .rujukan-card .source-type { color: var(--accent1-dark); }
+
+        .rujukan-card h4 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+        .rujukan-card .author {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        .rujukan-card blockquote {
+            font-size: 1.1rem;
+            font-style: italic;
+            padding-left: 1.5rem;
+            border-left: 3px solid;
+            margin: 0 0 1rem 0;
+        }
+        .light-theme .rujukan-card blockquote { border-color: var(--frame-light); }
+        .dark-theme .rujukan-card blockquote { border-color: var(--frame-dark); }
+        .rujukan-card cite {
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        /* --- FOOTER --- */
+        .main-footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+        .light-theme .main-footer { background-color: var(--card-bg-light); }
+        .dark-theme .main-footer { background-color: var(--card-bg-dark); }
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        .light-theme .footer-logo { color: var(--heading-light); }
+        .dark-theme .footer-logo { color: var(--accent2-dark); }
 
         /* --- ANIMATIONS --- */
         .hidden {
@@ -541,6 +603,7 @@
                 <li><a href="#prinsip">Prinsip</a></li>
                 <li><a href="#isu">Isu</a></li>
                 <li><a href="#implementasi">Implementasi</a></li>
+                <li><a href="#rujukan">Rujukan</a></li>
             </ul>
             <div class="nav-controls">
                 <button class="theme-toggle" aria-label="Toggle theme">
@@ -689,25 +752,50 @@
             </div>
         </section>
         
-        <!-- Section D: Isu Kontemporer -->
+        <!-- Section D: Isu Pelanggaran HAM dan Praktik Demokrasi -->
         <section id="isu" class="manuscript-page hidden">
             <header class="page-header">
                 <span class="page-letter">D</span>
-                <h2 class="page-title">Isu-isu Kontemporer dan Tantangan</h2>
+                <h2 class="page-title">Isu-isu Pelanggaran HAM dan Praktik Demokrasi di Negara-negara Muslim Berdasarkan Pendekatan Islam</h2>
             </header>
             <div class="content">
-                <p>Dunia Muslim menghadapi tantangan kompleks dalam upaya menerapkan nilai-nilai luhur HAM dan demokrasi. Tantangan ini bersifat internal maupun eksternal.</p>
-                <h3 class="sub-heading">Tantangan Internal</h3>
-                <ul>
-                    <li><strong>Otoritarianisme:</strong> Banyak negara berpenduduk mayoritas Muslim masih diperintah oleh rezim otoriter yang menekan kebebasan sipil dengan dalih stabilitas atau bahkan agama.</li>
-                    <li><strong>Ekstremisme dan Terorisme:</strong> Kelompok ekstremis membajak ajaran Islam untuk melegitimasi kekerasan dan penindasan, menciptakan citra negatif dan merusak tatanan sosial.</li>
-                    <li><strong>Kesenjangan antara Teks dan Realitas:</strong> Terdapat jurang pemisah antara idealisme ajaran Islam tentang keadilan dan realitas praktik sosial-politik di banyak komunitas Muslim.</li>
+                <p>Meskipun ajaran Islam sangat menekankan keadilan dan perlindungan hak, realitas di berbagai negara Muslim seringkali menunjukkan adanya kesenjangan yang signifikan. Pelanggaran HAM dan defisit demokrasi terjadi karena berbagai faktor, termasuk interpretasi agama yang sempit, kepentingan politik rezim, serta warisan kolonialisme. Penting untuk menganalisis isu-isu ini bukan untuk menyalahkan ajaran Islam, melainkan untuk melihat bagaimana nilai-nilai luhur Islam dapat menjadi solusi.</p>
+                
+                <h3 class="sub-heading">Studi Kasus dan Pendekatan Islam</h3>
+                <ul class="principles-list">
+                    <li class="principle-item">
+                        <div class="principle-icon"><i class="fas fa-people-arrows"></i></div>
+                        <div>
+                            <h4 class="principle-title">Kasus Penindasan Minoritas</h4>
+                            <p>Contoh: Rohingya di Myanmar, Uighur di Tiongkok. Meskipun terjadi di luar negara mayoritas Muslim, solidaritas umat Islam diuji. Pendekatan Islam mengutuk keras penindasan (<em>zulm</em>) dan mewajibkan perlindungan terhadap non-Muslim yang hidup damai (<em>dzimmi</em>). Piagam Madinah menjadi contoh historis bagaimana Nabi Muhammad SAW membangun masyarakat plural yang melindungi hak semua kelompok agama.</p>
+                        </div>
+                    </li>
+                    <li class="principle-item">
+                        <div class="principle-icon"><i class="fas fa-comment-slash"></i></div>
+                        <div>
+                            <h4 class="principle-title">Pembatasan Kebebasan Berpendapat</h4>
+                            <p>Contoh: Kasus Jurnalis di Arab Saudi, Aktivis di Mesir. Penangkapan aktivis dan jurnalis yang kritis terhadap pemerintah bertentangan dengan prinsip Islam tentang <em>amar ma'ruf nahi munkar</em> (menyeru pada kebaikan, mencegah kemungkaran) dan kewajiban menasihati pemimpin secara adil (<em>nashihah li a'immat al-muslimin</em>).</p>
+                        </div>
+                    </li>
+                    <li class="principle-item">
+                        <div class="principle-icon"><i class="fas fa-person-dress-burst"></i></div>
+                        <div>
+                            <h4 class="principle-title">Diskriminasi Terhadap Perempuan</h4>
+                            <p>Contoh: Pembatasan Pendidikan dan Ruang Publik di Afghanistan. Kebijakan yang mengebiri hak-hak dasar perempuan atas pendidikan dan pekerjaan bertentangan dengan semangat Islam yang memuliakan perempuan dan menekankan pentingnya ilmu bagi setiap Muslim dan Muslimah. Sejarah Islam mencatat banyak cendekiawan dan pebisnis perempuan yang terkemuka.</p>
+                        </div>
+                    </li>
                 </ul>
-                 <h3 class="sub-heading">Tantangan Eksternal</h3>
-                 <ul>
-                    <li><strong>Islamofobia:</strong> Prasangka dan diskriminasi terhadap Muslim di berbagai belahan dunia menghambat partisipasi penuh mereka sebagai warga negara dan memicu ketegangan.</li>
-                    <li><strong>Intervensi Asing dan Geopolitik:</strong> Kepentingan geopolitik negara-negara besar seringkali mengorbankan kedaulatan dan proses demokrasi di negara-negara Muslim.</li>
-                </ul>
+
+                <div class="ayat-card">
+                    <div class="ayat-header">
+                        <h4 class="ayat-title">Prinsip Keadilan Mutlak</h4>
+                    </div>
+                    <p class="arabic-text">يَا أَيُّهَا الَّذِينَ آمَنُوا كُونُوا قَوَّامِينَ بِالْقِسْطِ شُهَدَاءَ لِلَّهِ وَلَوْ عَلَىٰ أَنْفُsِكُمْ</p>
+                    <em class="translation">"Wahai orang-orang yang beriman, jadilah kamu penegak keadilan, menjadi saksi karena Allah, walaupun terhadap dirimu sendiri..." (QS. An-Nisa' [4]: 135)</em>
+                    <button class="tafsir-btn" data-modal-id="modal-3">
+                        <i class="fas fa-book-open"></i> Pendekatan Islam
+                    </button>
+                </div>
             </div>
         </section>
 
@@ -715,37 +803,91 @@
         <section id="implementasi" class="manuscript-page hidden">
             <header class="page-header">
                 <span class="page-letter">E</span>
-                <h2 class="page-title">Upaya Implementasi Nilai-nilai HAM dan Demokrasi</h2>
+                <h2 class="page-title">Nilai HAM dan Demokrasi Islam dalam Kehidupan Sosial, Politik, dan Kemasyarakatan secara Bijak dan Moderat</h2>
             </header>
             <div class="content">
-                <p>Untuk menjawab tantangan tersebut, diperlukan upaya kolektif dan berkelanjutan dari berbagai elemen masyarakat Muslim. Beberapa langkah strategis yang dapat ditempuh antara lain:</p>
+                <p>Implementasi nilai-nilai luhur HAM dan demokrasi dalam Islam bukanlah sekadar wacana teoretis, melainkan harus terwujud dalam tindakan nyata yang bijak (<em>hikmah</em>) dan moderat (<em>wasathiyyah</em>). Ini berarti mencari jalan tengah, menghindari ekstremisme, dan senantiasa berorientasi pada kemaslahatan bersama (<em>maslahah 'ammah</em>).</p>
                  <ul class="principles-list">
                     <li class="principle-item">
-                        <div class="principle-icon"><i class="fas fa-lightbulb"></i></div>
+                        <div class="principle-icon"><i class="fas fa-users"></i></div>
                         <div>
-                            <h4 class="principle-title">Reformasi Pemikiran Islam (Ijtihad)</h4>
-                            <p>Mendorong ijtihad kontemporer untuk menafsirkan kembali teks-teks suci agar relevan dengan tantangan zaman modern, khususnya dalam isu-isu kenegaraan, hak-hak perempuan, dan hubungan antaragama.</p>
+                            <h4 class="principle-title">Dalam Kehidupan Sosial</h4>
+                            <p>Mewujudkan masyarakat yang toleran (<em>tasamuh</em>) dan inklusif. Ini berarti secara aktif melindungi hak-hak kelompok minoritas, mempromosikan dialog antariman, menolak ujaran kebencian, serta membangun ruang publik yang aman bagi semua warga untuk berinteraksi tanpa diskriminasi.</p>
                         </div>
                     </li>
                     <li class="principle-item">
-                        <div class="principle-icon"><i class="fas fa-users-rays"></i></div>
+                        <div class="principle-icon"><i class="fas fa-landmark"></i></div>
                         <div>
-                            <h4 class="principle-title">Dialog Antaragama dan Peradaban</h4>
-                            <p>Membangun jembatan komunikasi dengan komunitas agama dan peradaban lain untuk membangun saling pengertian dan kerja sama demi kemaslahatan bersama.</p>
+                            <h4 class="principle-title">Dalam Kehidupan Politik</h4>
+                            <p>Membangun sistem politik yang berlandaskan pada amanah dan keadilan. Ini mencakup penegakan hukum yang tidak pandang bulu, pemberantasan korupsi, memastikan adanya mekanisme akuntabilitas bagi pejabat publik, dan menjamin suksesi kepemimpinan yang damai dan demokratis melalui partisipasi rakyat.</p>
                         </div>
                     </li>
                     <li class="principle-item">
-                        <div class="principle-icon"><i class="fas fa-school"></i></div>
+                        <div class="principle-icon"><i class="fas fa-hands-helping"></i></div>
                         <div>
-                            <h4 class="principle-title">Pendidikan Kewarganegaraan</h4>
-                            <p>Mengintegrasikan pendidikan tentang hak dan kewajiban warga negara berdasarkan nilai-nilai Islam dan kebangsaan dalam kurikulum pendidikan formal maupun informal.</p>
+                            <h4 class="principle-title">Dalam Kehidupan Kemasyarakatan</h4>
+                            <p>Memberdayakan masyarakat sipil (<em>civil society</em>) sebagai mitra kritis pemerintah. Ini dilakukan dengan cara mendukung kebebasan berserikat, mendorong pendidikan yang membebaskan dan merangsang pemikiran kritis, serta menciptakan program-program yang meningkatkan partisipasi publik dalam pengambilan kebijakan.</p>
                         </div>
                     </li>
                 </ul>
+                <div class="ayat-card">
+                    <div class="ayat-header">
+                        <h4 class="ayat-title">Fondasi Implementasi: Hikmah & Wasathiyyah</h4>
+                    </div>
+                    <p class="arabic-text">وَكَذَٰلِكَ جَعَلْنَاكُمْ أُمَّةً وَسَطًا</p>
+                    <em class="translation">"Dan demikian (pula) Kami telah menjadikan kamu (umat Islam), umat yang adil dan pilihan..." (QS. Al-Baqarah [2]: 143)</em>
+                    <button class="tafsir-btn" data-modal-id="modal-4">
+                        <i class="fas fa-book-open"></i> Penjelasan Mendalam
+                    </button>
+                </div>
             </div>
         </section>
 
+        <!-- Section F: Rujukan -->
+        <section id="rujukan" class="manuscript-page hidden">
+            <header class="page-header">
+                <span class="page-letter">F</span>
+                <h2 class="page-title">Sumber Rujukan & Kutipan</h2>
+            </header>
+            <div class="content">
+                <p>Analisis dalam naskah digital ini disarikan dan diinspirasi dari berbagai karya fundamental dalam tradisi intelektual Islam, baik klasik maupun kontemporer. Berikut adalah beberapa kutipan representatif yang menjadi landasan pemikiran.</p>
+                
+                <div class="rujukan-card">
+                    <p class="source-type">Kitab Ushul Fikih Klasik</p>
+                    <h4>Al-Muwafaqat fi Usul al-Shari'ah</h4>
+                    <span class="author">Imam Asy-Syatibi</span>
+                    <blockquote>"Sesungguhnya syariat itu dibangun di atas landasan untuk mendatangkan kemaslahatan (jalb al-masalih) dan menolak kerusakan (dar' al-mafasid) dalam kehidupan manusia. Dan tujuan-tujuan ini berpusat pada perlindungan terhadap lima hal pokok: agama, jiwa, akal, keturunan, dan harta."</blockquote>
+                    <cite>Merujuk pada pembahasan konsep Maqashid al-Shari'ah, Jilid 2, hlm. 6.</cite>
+                </div>
+
+                <div class="rujukan-card">
+                    <p class="source-type">Buku Akademik Kontemporer</p>
+                    <h4>Islam and the Challenge of Democracy</h4>
+                    <span class="author">Khaled Abou El Fadl</span>
+                    <blockquote>"Consultation (shura) is not merely a recommendation but a binding principle at the heart of legitimate Islamic governance. It is the institutional mechanism that guards against despotism and ensures that authority remains accountable to the Ummah."
+                    <br><em>(Musyawarah (syura) bukan sekadar rekomendasi, melainkan prinsip mengikat di jantung pemerintahan Islam yang sah. Ia adalah mekanisme kelembagaan yang menjaga dari despotisme dan memastikan bahwa kekuasaan tetap bertanggung jawab kepada Umat.)</em>
+                    </blockquote>
+                    <cite>Merujuk pada pembahasan Syura sebagai pilar demokrasi, hlm. 102.</cite>
+                </div>
+
+                <div class="rujukan-card">
+                    <p class="source-type">Buku Akademik Kontemporer</p>
+                    <h4>Toward an Islamic Reformation: Civil Liberties, Human Rights, and International Law</h4>
+                    <span class="author">Abdullahi Ahmed An-Na'im</span>
+                    <blockquote>"A modern interpretation of Shari'a, one that is based on a methodology of reform and reinterpretation (ijtihad), is essential for the full realization of civil liberties and human rights within an Islamic framework that is consistent with the demands of contemporary life."
+                    <br><em>(Interpretasi modern terhadap Syariah, yang didasarkan pada metodologi pembaruan dan penafsiran kembali (ijtihad), sangat penting untuk realisasi penuh kebebasan sipil dan hak asasi manusia dalam kerangka Islam yang konsisten dengan tuntutan kehidupan kontemporer.)</em>
+                    </blockquote>
+                    <cite>Merujuk pada argumen reformasi pemikiran Islam, hlm. 52.</cite>
+                </div>
+
+            </div>
+        </section>
     </main>
+
+    <footer class="main-footer">
+        <a href="#" class="footer-logo">الميزان</a>
+        <p>&copy; 2025 Proyek Manuskrip Digital Al-Mizan. Seluruh hak cipta dilindungi.</p>
+    </footer>
 
     <!-- Modal Windows -->
     <div id="modal-1" class="modal-overlay">
@@ -760,6 +902,30 @@
             <button class="modal-close-btn" data-modal-id="modal-2">&times;</button>
             <h3 class="sub-heading">Tafsir QS. Asy-Syura [42]: 38</h3>
             <p>Ayat ini menggambarkan salah satu ciri utama komunitas Muslim yang ideal. Frasa "wa amruhum syura bainahum" (sedang urusan mereka diputuskan dengan musyawarah di antara mereka) menempatkan musyawarah bukan hanya sebagai pilihan, tetapi sebagai bagian integral dari identitas dan cara hidup mereka. Ini berlaku untuk semua urusan kolektif, mulai dari urusan keluarga hingga urusan negara. Dalam konteks politik, ayat ini menjadi dasar legitimasi bagi dewan perwakilan, parlemen, atau majelis syura di mana keputusan penting yang menyangkut hajat hidup orang banyak harus dibicarakan dan disepakati bersama, bukan diputuskan secara sepihak oleh penguasa.</p>
+        </div>
+    </div>
+    <div id="modal-3" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn" data-modal-id="modal-3">&times;</button>
+            <h3 class="sub-heading">Pendekatan Islam dalam Menyikapi Pelanggaran HAM</h3>
+            <p>Ayat dari QS. An-Nisa' [4]: 135 ini merupakan fondasi pendekatan Islam. Keadilan (<em>al-qist</em>) adalah nilai inti yang harus ditegakkan tanpa kompromi, bahkan jika itu merugikan diri sendiri, keluarga, atau kelompok. Berdasarkan prinsip ini:</p>
+            <ul>
+                <li><strong>Melawan Kezaliman (Zulm):</strong> Islam secara tegas melarang segala bentuk kezaliman. Ketika terjadi pelanggaran HAM, sikap seorang Muslim adalah berpihak pada korban (<em>mustadh'afin</em>) dan menentang pelaku kezaliman, siapapun dia. Diam terhadap penindasan dianggap sebagai bentuk persetujuan.</li>
+                <li><strong>Prioritas pada Maqashid al-Shari'ah:</strong> Dalam menganalisis kebijakan atau tindakan, dampaknya terhadap lima hak dasar (agama, jiwa, akal, keturunan, dan harta) harus menjadi pertimbangan utama. Kebijakan yang merusak salah satu dari lima hak ini, seperti melarang pendidikan bagi perempuan (merusak hak akal) atau menindas minoritas (merusak hak agama dan jiwa), secara inheren bertentangan dengan tujuan syariat.</li>
+                <li><strong>Mengedepankan Rahmat (Kasih Sayang):</strong> Misi utama Nabi Muhammad SAW adalah sebagai rahmat bagi seluruh alam (<em>rahmatan lil 'alamin</em>). Oleh karena itu, setiap pendekatan dalam menyelesaikan masalah sosial dan politik harus dilandasi oleh semangat kasih sayang, dialog, dan perdamaian, bukan kekerasan atau paksaan.</li>
+            </ul>
+        </div>
+    </div>
+    <div id="modal-4" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn" data-modal-id="modal-4">&times;</button>
+            <h3 class="sub-heading">Fondasi Implementasi: Hikmah & Wasathiyyah</h3>
+            <p>Ayat "ummatan wasathan" (umat pertengahan) dalam QS. Al-Baqarah [2]: 143 menjadi landasan bagi dua prinsip kunci dalam implementasi nilai-nilai Islam: kebijaksanaan (<em>hikmah</em>) dan moderasi (<em>wasathiyyah</em>).</p>
+            <ul>
+                <li><strong>Hikmah (Kebijaksanaan):</strong> Bukan hanya sekadar mengetahui mana yang benar dan salah, tetapi juga memahami cara, waktu, dan konteks yang tepat untuk menerapkan kebenaran tersebut. Dalam memperjuangkan HAM dan demokrasi, pendekatan yang bijak berarti tidak tergesa-gesa, mempertimbangkan dampak sosial, mengutamakan dialog daripada konfrontasi, dan memilih strategi yang paling efektif untuk mencapai kemaslahatan terbesar.</li>
+                <li><strong>Wasathiyyah (Moderasi):</strong> Sikap ini adalah inti dari ajaran Islam, yaitu menghindari segala bentuk ekstremisme (<em>ghuluw</em>). Dalam konteks HAM, ini berarti menolak liberalisme absolut yang mengabaikan nilai-nilai moral dan spiritual, sekaligus menolak konservatisme kaku yang menindas hak-hak individu atas nama interpretasi agama yang sempit. Menjadi moderat berarti mampu menyeimbangkan antara hak dan kewajiban, antara kebebasan individu dan kemaslahatan komunal, serta antara teks suci (<em>nash</em>) dan realitas kontemporer (<em>waqi'</em>).</li>
+            </ul>
+            <p>Dengan kedua fondasi ini, perjuangan untuk HAM dan demokrasi dalam kerangka Islam akan menjadi gerakan yang konstruktif, rahmat, dan membawa perbaikan nyata bagi masyarakat.</p>
         </div>
     </div>
 
