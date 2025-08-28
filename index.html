@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al-Mizan: Manuskrip Digital HAM & Demokrasi dalam Islam</title>
+    
+    <!-- Google Fonts: Amiri for Headings, Lora for Body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* --- CSS RESET & VARIABLE DEFINITION --- */
+        :root {
+            /* Light Theme (Parchment & Gold) */
+            --bg-light: #F5EFE6;
+            --text-light: #4A2E2A;
+            --frame-light: #D8C4B6;
+            --card-bg-light: rgba(245, 239, 230, 0.5);
+            --heading-light: #603813;
+            --accent1-light: #D4AF37; /* Gold */
+            --accent2-light: #9B2226; /* Ruby Red */
+            --accent3-light: #26619C; /* Lapis Lazuli Blue */
+            --shadow-light: rgba(74, 46, 42, 0.1);
+
+            /* Dark Theme (Midnight & Emerald) */
+            --bg-dark: #0B132B;
+            --text-dark: #E0E0E0;
+            --frame-dark: #3A506B;
+            --card-bg-dark: rgba(26, 42, 78, 0.5);
+            --heading-dark: #FFFFFF;
+            --accent1-dark: #50C878; /* Emerald */
+            --accent2-dark: #F4D35E; /* Gold */
+            --accent3-dark: #9D79D2; /* Amethyst */
+            --shadow-dark: rgba(0, 0, 0, 0.4);
+
+            --font-heading: 'Amiri', serif;
+            --font-body: 'Lora', serif;
+            --transition-speed: 0.4s;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            overflow-x: hidden;
+            background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+        }
+
+        /* --- THEME CLASSES --- */
+        .light-theme {
+            background-color: var(--bg-light);
+            color: var(--text-light);
+        }
+        .dark-theme {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        /* --- PRELOADER --- */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.75s, visibility 0.75s;
+        }
+        .light-theme #preloader { background-color: var(--bg-light); }
+        .dark-theme #preloader { background-color: var(--bg-dark); }
+
+        .preloader-star {
+            width: 100px;
+            height: 100px;
+            animation: rotate-star 2.5s infinite linear;
+        }
+        .light-theme .preloader-star path { fill: var(--heading-light); }
+        .dark-theme .preloader-star path { fill: var(--accent1-dark); }
+
+        @keyframes rotate-star {
+            from { transform: rotate(0deg) scale(0.8); }
+            to { transform: rotate(360deg) scale(0.8); }
+        }
+        
+        /* --- HEADER & NAVBAR --- */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+        }
+        .main-header.scrolled {
+            box-shadow: 0 5px 20px var(--shadow-light);
+        }
+        .light-theme .main-header.scrolled { background-color: rgba(245, 239, 230, 0.8); backdrop-filter: blur(10px); }
+        .dark-theme .main-header.scrolled { background-color: rgba(11, 19, 43, 0.8); backdrop-filter: blur(10px); }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .nav-logo a {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+        .light-theme .nav-logo a { color: var(--heading-light); }
+        .dark-theme .nav-logo a { color: var(--accent2-dark); }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+        }
+        .nav-menu li { margin: 0 1.5rem; }
+        .nav-menu a {
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 0.5rem;
+            transition: color var(--transition-speed);
+        }
+        .light-theme .nav-menu a { color: var(--text-light); }
+        .dark-theme .nav-menu a { color: var(--text-dark); }
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            transition: width var(--transition-speed) ease;
+        }
+        .light-theme .nav-menu a::after { background-color: var(--accent2-light); }
+        .dark-theme .nav-menu a::after { background-color: var(--accent1-dark); }
+        .nav-menu a:hover::after { width: 100%; }
+
+        .nav-controls { display: flex; align-items: center; gap: 1rem; }
+        .theme-toggle, .burger-menu {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: color var(--transition-speed), transform 0.3s;
+        }
+        .theme-toggle:hover, .burger-menu:hover { transform: scale(1.1); }
+        .light-theme .theme-toggle, .light-theme .burger-menu { color: var(--text-light); }
+        .dark-theme .theme-toggle, .dark-theme .burger-menu { color: var(--text-dark); }
+        .burger-menu { display: none; z-index: 2000; }
+        .theme-toggle .fa-sun { display: none; }
+        .dark-theme .theme-toggle .fa-sun { display: block; }
+        .dark-theme .theme-toggle .fa-moon { display: none; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 2rem;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .light-theme .hero { background-image: linear-gradient(rgba(245, 239, 230, 0.8), rgba(245, 239, 230, 1)), url('https://images.unsplash.com/photo-1604147706283-d7119b5b822c?q=80&w=2487&auto=format&fit=crop'); }
+        .dark-theme .hero { background-image: linear-gradient(rgba(11, 19, 43, 0.8), rgba(11, 19, 43, 1)), url('https://images.unsplash.com/photo-1532467214138-0f3b7626e3e5?q=80&w=2592&auto=format&fit=crop'); }
+        
+        .hero-content {
+            max-width: 800px;
+            animation: fadeIn 1.5s ease-out forwards;
+            opacity: 0;
+        }
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            line-height: 1.1;
+        }
+        .light-theme .hero-title { color: var(--heading-light); }
+        .dark-theme .hero-title { color: var(--heading-dark); text-shadow: 0 0 15px var(--accent2-dark); }
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            margin-top: 1rem;
+            font-style: italic;
+            font-weight: 400;
+        }
+        .hero-tagline {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+        .light-theme .hero-tagline { border-color: var(--accent1-light); }
+        .dark-theme .hero-tagline { border-color: var(--accent1-dark); }
+        .light-theme .hero-tagline:hover { background-color: var(--accent1-light); color: #fff; }
+        .dark-theme .hero-tagline:hover { background-color: var(--accent1-dark); color: var(--bg-dark); }
+        
+        /* --- CONTENT SECTIONS (MANUSCRIPT PAGE) --- */
+        .manuscript-page {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 4rem auto;
+            position: relative;
+            border-style: solid;
+            border-width: 20px;
+            border-radius: 10px;
+            transition: border-color var(--transition-speed), background-color var(--transition-speed);
+            box-shadow: 0 15px 40px var(--shadow-light);
+        }
+        .light-theme .manuscript-page {
+            border-image: url('data:image/svg+xml;charset=UTF-8,%3csvg width="100" height="100" xmlns="http://www.w3.org/2000/svg"%3e%3cdefs%3e%3clinearGradient id="g" x1="0" y1="0" x2="1" y2="1"%3e%3cstop stop-color="%23D4AF37"/%3e%3cstop offset=".5" stop-color="%239B2226"/%3e%3cstop offset="1" stop-color="%2326619C"/%3e%3c/linearGradient%3e%3c/defs%3e%3crect width="100" height="100" stroke-width="8" stroke="url(%23g)" fill="none"/%3e%3c/svg%3e') 20 / 20px / 1rem round;
+            background-color: var(--card-bg-light);
+        }
+        .dark-theme .manuscript-page {
+            border-image: url('data:image/svg+xml;charset=UTF-8,%3csvg width="100" height="100" xmlns="http://www.w3.org/2000/svg"%3e%3cdefs%3e%3clinearGradient id="g" x1="0" y1="0" x2="1" y2="1"%3e%3cstop stop-color="%2350C878"/%3e%3cstop offset=".5" stop-color="%23F4D35E"/%3e%3cstop offset="1" stop-color="%239D79D2"/%3e%3c/linearGradient%3e%3c/defs%3e%3crect width="100" height="100" stroke-width="8" stroke="url(%23g)" fill="none"/%3e%3c/svg%3e') 20 / 20px / 1rem round;
+            background-color: var(--card-bg-dark);
+        }
+
+        .page-header {
+            display: flex;
+            align-items: baseline;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .page-letter {
+            font-family: var(--font-heading);
+            font-size: 6rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .light-theme .page-letter { color: var(--accent2-light); }
+        .dark-theme .page-letter { color: var(--accent1-dark); }
+        .page-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        .light-theme .page-title { color: var(--heading-light); }
+        .dark-theme .page-title { color: var(--heading-dark); }
+
+        .content p, .content li {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .sub-heading {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            margin: 3rem 0 1.5rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid;
+            display: inline-block;
+        }
+        .light-theme .sub-heading { border-color: var(--accent1-light); }
+        .dark-theme .sub-heading { border-color: var(--accent2-dark); }
+        
+        /* --- INTERACTIVE AYAT CARD --- */
+        .ayat-card {
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 8px;
+            position: relative;
+            border: 1px solid;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .light-theme .ayat-card {
+            background-color: rgba(255, 255, 255, 0.3);
+            border-color: var(--frame-light);
+        }
+        .dark-theme .ayat-card {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-color: var(--frame-dark);
+        }
+        .ayat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--shadow-light);
+        }
+        
+        .ayat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .ayat-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .light-theme .ayat-title { color: var(--accent2-light); }
+        .dark-theme .ayat-title { color: var(--accent1-dark); }
+        
+        .arabic-text {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            text-align: right;
+            margin: 1rem 0;
+            line-height: 1.8;
+        }
+        
+        .translation {
+            font-style: italic;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .tafsir-btn {
+            background: none;
+            border: 2px solid;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: var(--font-body);
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .light-theme .tafsir-btn { border-color: var(--accent3-light); color: var(--accent3-light); }
+        .dark-theme .tafsir-btn { border-color: var(--accent3-dark); color: var(--accent3-dark); }
+        .light-theme .tafsir-btn:hover { background-color: var(--accent3-light); color: white; }
+        .dark-theme .tafsir-btn:hover { background-color: var(--accent3-dark); color: var(--bg-dark); }
+
+        /* --- MODAL FOR TAFSIR --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s, visibility 0.4s;
+        }
+        .light-theme .modal-overlay { background-color: rgba(74, 46, 42, 0.7); }
+        .dark-theme .modal-overlay { background-color: rgba(11, 19, 43, 0.8); }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            position: relative;
+            padding: 3rem;
+            border-radius: 8px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: transform 0.4s;
+        }
+        .modal-overlay.active .modal-content { transform: scale(1); }
+        .light-theme .modal-content { background-color: var(--bg-light); border: 2px solid var(--accent1-light); }
+        .dark-theme .modal-content { background-color: var(--bg-dark); border: 2px solid var(--accent2-dark); }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* --- MAQASHID GRID --- */
+        .maqashid-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .maqashid-card {
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: 8px;
+            border: 1px solid;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .light-theme .maqashid-card { border-color: var(--frame-light); background: rgba(255,255,255,0.2); }
+        .dark-theme .maqashid-card { border-color: var(--frame-dark); background: rgba(0,0,0,0.1); }
+        .maqashid-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px var(--shadow-light);
+        }
+        .maqashid-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .light-theme .maqashid-icon { color: var(--accent3-light); }
+        .dark-theme .maqashid-icon { color: var(--accent3-dark); }
+        .maqashid-card h4 { font-family: var(--font-heading); font-size: 1.3rem; }
+
+        /* --- COMPARISON TABLE --- */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 2rem;
+        }
+        .comparison-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .comparison-card li {
+            padding: 1rem;
+            border-bottom: 1px dashed;
+        }
+        .light-theme .comparison-card li { border-color: var(--frame-light); }
+        .dark-theme .comparison-card li { border-color: var(--frame-dark); }
+        .comparison-card li:last-child { border-bottom: none; }
+        .comparison-divider { font-size: 4rem; }
+        .light-theme .comparison-divider { color: var(--accent1-light); }
+        .dark-theme .comparison-divider { color: var(--accent2-dark); }
+
+        /* --- PRINCIPLES LIST --- */
+        .principles-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .principle-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        .light-theme .principle-item:nth-child(odd) { background: rgba(0,0,0,0.02); }
+        .dark-theme .principle-item:nth-child(odd) { background: rgba(255,255,255,0.02); }
+        .principle-icon { font-size: 2.5rem; padding-top: 0.5rem; }
+        .light-theme .principle-icon { color: var(--accent2-light); }
+        .dark-theme .principle-icon { color: var(--accent1-dark); }
+        .principle-title { font-family: var(--font-heading); font-size: 1.5rem; }
+
+        /* --- ANIMATIONS --- */
+        .hidden {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 992px) {
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100vh;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: left 0.5s ease-in-out;
+                z-index: 1500;
+            }
+            .light-theme .nav-menu { background-color: var(--bg-light); }
+            .dark-theme .nav-menu { background-color: var(--bg-dark); }
+            .nav-menu.active { left: 0; }
+            .nav-menu li { margin: 2rem 0; }
+            .nav-menu a { font-size: 1.5rem; }
+            .burger-menu { display: block; }
+
+            .comparison-grid { grid-template-columns: 1fr; }
+            .comparison-divider { transform: rotate(90deg); margin: 1rem 0; }
+        }
+        
+        @media (max-width: 768px) {
+            .manuscript-page { padding: 4rem 1rem; border-width: 10px; }
+            .page-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; text-align: left; }
+            .page-letter { font-size: 4rem; }
+            .page-title { font-size: 2rem; }
+            .principle-item { flex-direction: column; }
+        }
+
+    </style>
+</head>
+<body class="light-theme">
+
+    <!-- Preloader with Islamic Star SVG -->
+    <div id="preloader">
+        <svg class="preloader-star" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 0 L61.2 38.8 L100 38.8 L69.1 61.2 L80.9 100 L50 76.3 L19.1 100 L30.9 61.2 L0 38.8 L38.8 38.8 Z"/>
+        </svg>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="nav-logo">
+                <a href="#">الميزان</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#konsep">Konsep</a></li>
+                <li><a href="#perbandingan">Perbandingan</a></li>
+                <li><a href="#prinsip">Prinsip</a></li>
+                <li><a href="#isu">Isu</a></li>
+                <li><a href="#implementasi">Implementasi</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button class="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button class="burger-menu" aria-label="Open menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">HAM & Demokrasi dalam Perspektif Islam</h1>
+                <p class="hero-subtitle">Sebuah Analisis Komprehensif Berdasarkan Wahyu dan Ijtihad</p>
+                <a href="#konsep" class="hero-tagline">Mulai Menjelajah</a>
+            </div>
+        </section>
+
+        <!-- Section A: Konsep HAM dan Demokrasi -->
+        <section id="konsep" class="manuscript-page hidden">
+            <header class="page-header">
+                <span class="page-letter">A</span>
+                <h2 class="page-title">Konsep Hak Asasi Manusia dan Demokrasi Menurut Pandangan Islam</h2>
+            </header>
+            <div class="content">
+                <p>Pandangan Islam tentang hak asasi manusia berakar pada konsep teologis yang fundamental: manusia adalah makhluk mulia yang diciptakan oleh Allah SWT sebagai <strong>khalifah di muka bumi</strong> (<em>khalīfah fī al-ardh</em>). Status ini memberikan manusia martabat, kehormatan, dan serangkaian hak inheren yang tidak dapat dicabut oleh kekuatan manapun.</p>
+                
+                <h3 class="sub-heading">Dasar Teologis HAM dalam Islam</h3>
+                
+                <div class="ayat-card">
+                    <div class="ayat-header">
+                        <h4 class="ayat-title">Kemuliaan Manusia (Karāmah Insāniyyah)</h4>
+                    </div>
+                    <p class="arabic-text">وَلَقَدْ كَرَّمْنَا بَنِي آدَمَ</p>
+                    <em class="translation">"Dan sesungguhnya telah Kami muliakan anak-anak Adam..." (QS. Al-Isra' [17]: 70)</em>
+                    <button class="tafsir-btn" data-modal-id="modal-1">
+                        <i class="fas fa-book-open"></i> Tafsir & Konteks
+                    </button>
+                </div>
+
+                <h3 class="sub-heading">Maqāshid al-Sharī'ah: Kerangka Universal HAM Islam</h3>
+                <p>Para ulama, seperti Imam Al-Ghazali dan Al-Shatibi, merumuskan lima tujuan utama hukum Islam (Maqāshid al-Sharī'ah) yang secara esensial merupakan kerangka kerja perlindungan HAM dalam Islam. Kelima jaminan ini adalah:</p>
+                <div class="maqashid-grid">
+                    <div class="maqashid-card">
+                        <i class="fas fa-mosque maqashid-icon"></i>
+                        <h4>Hifzh al-Dīn</h4>
+                        <p>Perlindungan Kebebasan Beragama</p>
+                    </div>
+                    <div class="maqashid-card">
+                        <i class="fas fa-heartbeat maqashid-icon"></i>
+                        <h4>Hifzh al-Nafs</h4>
+                        <p>Perlindungan Hak untuk Hidup</p>
+                    </div>
+                    <div class="maqashid-card">
+                        <i class="fas fa-brain maqashid-icon"></i>
+                        <h4>Hifzh al-'Aql</h4>
+                        <p>Perlindungan Kebebasan Berpikir</p>
+                    </div>
+                    <div class="maqashid-card">
+                        <i class="fas fa-users maqashid-icon"></i>
+                        <h4>Hifzh al-Nasl</h4>
+                        <p>Perlindungan Hak Berkeluarga</p>
+                    </div>
+                    <div class="maqashid-card">
+                        <i class="fas fa-wallet maqashid-icon"></i>
+                        <h4>Hifzh al-Māl</h4>
+                        <p>Perlindungan Hak atas Harta</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section B: Perbandingan -->
+        <section id="perbandingan" class="manuscript-page hidden">
+            <header class="page-header">
+                <span class="page-letter">B</span>
+                <h2 class="page-title">Kesesuaian dan Perbedaan antara HAM Universal dan Perspektif Islam</h2>
+            </header>
+            <div class="content">
+                <p>Meskipun banyak nilai yang selaras, terdapat perbedaan fundamental dalam sumber otoritas dan filosofi dasar antara Deklarasi Universal Hak Asasi Manusia (DUHAM) dan konsep HAM dalam Islam.</p>
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h3 class="sub-heading">HAM Universal (DUHAM)</h3>
+                        <ul>
+                            <li><strong>Sumber Otoritas:</strong> Berbasis pada akal budi manusia (rasionalisme) dan konsensus internasional. Bersifat antroposentris (berpusat pada manusia).</li>
+                            <li><strong>Sifat Hak:</strong> Cenderung absolut, individualistis, dan seringkali dipandang terpisah dari kewajiban.</li>
+                            <li><strong>Kebebasan Beragama:</strong> Mencakup hak untuk tidak beragama dan berpindah agama secara bebas tanpa batasan.</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-divider">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <div class="comparison-card">
+                        <h3 class="sub-heading">HAM Perspektif Islam</h3>
+                        <ul>
+                            <li><strong>Sumber Otoritas:</strong> Berbasis pada wahyu ilahi (Al-Qur'an dan Sunnah). Bersifat teosentris (berpusat pada Tuhan).</li>
+                            <li><strong>Sifat Hak:</strong> Relasional dan komunitarian. Hak selalu diimbangi dengan kewajiban kepada Tuhan, sesama, dan alam.</li>
+                            <li><strong>Kebebasan Beragama:</strong> Menjamin kebebasan memeluk agama ("Tidak ada paksaan dalam agama"), namun terdapat perdebatan ulama mengenai konsekuensi hukum bagi yang murtad.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section C: Prinsip Demokrasi -->
+        <section id="prinsip" class="manuscript-page hidden">
+            <header class="page-header">
+                <span class="page-letter">C</span>
+                <h2 class="page-title">Prinsip-prinsip Demokrasi yang Sejalan dengan Nilai Islam</h2>
+            </header>
+            <div class="content">
+                <p>Islam tidak menawarkan sistem demokrasi ala Barat secara kaku, namun mengajarkan prinsip-prinsip pemerintahan yang sangat sejalan dengan substansi demokrasi, yaitu pemerintahan dari rakyat, oleh rakyat, dan untuk rakyat dalam kerangka nilai-nilai Ilahi.</p>
+                <ul class="principles-list">
+                    <li class="principle-item">
+                        <div class="principle-icon"><i class="fas fa-comments"></i></div>
+                        <div>
+                            <h4 class="principle-title">Musyawarah (Syura)</h4>
+                            <p>Prinsip pengambilan keputusan secara kolektif. Ini adalah jantung dari proses politik Islam, di mana pemimpin diwajibkan untuk mendengar dan mempertimbangkan pendapat rakyat atau perwakilannya.</p>
+                        </div>
+                    </li>
+                    <div class="ayat-card">
+                         <p class="arabic-text">وَأَمْرُهُمْ شُورَىٰ بَيْنَهُمْ</p>
+                         <em class="translation">"...sedang urusan mereka (diputuskan) dengan musyawarah antara mereka..." (QS. Asy-Syura [42]: 38)</em>
+                         <button class="tafsir-btn" data-modal-id="modal-2"><i class="fas fa-book-open"></i> Tafsir & Konteks</button>
+                    </div>
+                    <li class="principle-item">
+                        <div class="principle-icon"><i class="fas fa-gavel"></i></div>
+                        <div>
+                            <h4 class="principle-title">Keadilan ('Adālah)</h4>
+                            <p>Kewajiban untuk berlaku adil dalam segala hal, termasuk dalam hukum dan kebijakan publik, tanpa memandang status sosial, agama, atau etnis.</p>
+                        </div>
+                    </li>
+                    <li class="principle-item">
+                        <div class="principle-icon"><i class="fas fa-handshake"></i></div>
+                        <div>
+                            <h4 class="principle-title">Amanah dan Akuntabilitas (Mas'ūliyyah)</h4>
+                            <p>Kekuasaan adalah amanah dari Tuhan yang diberikan melalui rakyat. Setiap pemimpin akan dimintai pertanggungjawaban atas kepemimpinannya, baik di dunia maupun di akhirat.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Section D: Isu Kontemporer -->
+        <section id="isu" class="manuscript-page hidden">
+            <header class="page-header">
+                <span class="page-letter">D</span>
+                <h2 class="page-title">Isu-isu Kontemporer dan Tantangan</h2>
+            </header>
+            <div class="content">
+                <p>Dunia Muslim menghadapi tantangan kompleks dalam upaya menerapkan nilai-nilai luhur HAM dan demokrasi. Tantangan ini bersifat internal maupun eksternal.</p>
+                <h3 class="sub-heading">Tantangan Internal</h3>
+                <ul>
+                    <li><strong>Otoritarianisme:</strong> Banyak negara berpenduduk mayoritas Muslim masih diperintah oleh rezim otoriter yang menekan kebebasan sipil dengan dalih stabilitas atau bahkan agama.</li>
+                    <li><strong>Ekstremisme dan Terorisme:</strong> Kelompok ekstremis membajak ajaran Islam untuk melegitimasi kekerasan dan penindasan, menciptakan citra negatif dan merusak tatanan sosial.</li>
+                    <li><strong>Kesenjangan antara Teks dan Realitas:</strong> Terdapat jurang pemisah antara idealisme ajaran Islam tentang keadilan dan realitas praktik sosial-politik di banyak komunitas Muslim.</li>
+                </ul>
+                 <h3 class="sub-heading">Tantangan Eksternal</h3>
+                 <ul>
+                    <li><strong>Islamofobia:</strong> Prasangka dan diskriminasi terhadap Muslim di berbagai belahan dunia menghambat partisipasi penuh mereka sebagai warga negara dan memicu ketegangan.</li>
+                    <li><strong>Intervensi Asing dan Geopolitik:</strong> Kepentingan geopolitik negara-negara besar seringkali mengorbankan kedaulatan dan proses demokrasi di negara-negara Muslim.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section E: Implementasi -->
+        <section id="implementasi" class="manuscript-page hidden">
+            <header class="page-header">
+                <span class="page-letter">E</span>
+                <h2 class="page-title">Upaya Implementasi Nilai-nilai HAM dan Demokrasi</h2>
+            </header>
+            <div class="content">
+                <p>Untuk menjawab tantangan tersebut, diperlukan upaya kolektif dan berkelanjutan dari berbagai elemen masyarakat Muslim. Beberapa langkah strategis yang dapat ditempuh antara lain:</p>
+                 <ul class="principles-list">
+                    <li class="principle-item">
+                        <div class="principle-icon"><i class="fas fa-lightbulb"></i></div>
+                        <div>
+                            <h4 class="principle-title">Reformasi Pemikiran Islam (Ijtihad)</h4>
+                            <p>Mendorong ijtihad kontemporer untuk menafsirkan kembali teks-teks suci agar relevan dengan tantangan zaman modern, khususnya dalam isu-isu kenegaraan, hak-hak perempuan, dan hubungan antaragama.</p>
+                        </div>
+                    </li>
+                    <li class="principle-item">
+                        <div class="principle-icon"><i class="fas fa-users-rays"></i></div>
+                        <div>
+                            <h4 class="principle-title">Dialog Antaragama dan Peradaban</h4>
+                            <p>Membangun jembatan komunikasi dengan komunitas agama dan peradaban lain untuk membangun saling pengertian dan kerja sama demi kemaslahatan bersama.</p>
+                        </div>
+                    </li>
+                    <li class="principle-item">
+                        <div class="principle-icon"><i class="fas fa-school"></i></div>
+                        <div>
+                            <h4 class="principle-title">Pendidikan Kewarganegaraan</h4>
+                            <p>Mengintegrasikan pendidikan tentang hak dan kewajiban warga negara berdasarkan nilai-nilai Islam dan kebangsaan dalam kurikulum pendidikan formal maupun informal.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal Windows -->
+    <div id="modal-1" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn" data-modal-id="modal-1">&times;</button>
+            <h3 class="sub-heading">Tafsir QS. Al-Isra' [17]: 70</h3>
+            <p>Ayat ini adalah pilar utama dalam teologi Islam mengenai martabat manusia. Kata "Karramna" (Kami telah muliakan) menunjukkan bahwa kemuliaan ini adalah anugerah langsung dari Allah, bukan pemberian dari negara atau masyarakat. Kemuliaan ini bersifat universal, mencakup seluruh "Bani Adam" (anak-cucu Adam) tanpa terkecuali. Ini menjadi landasan fundamental bahwa setiap individu, tanpa memandang latar belakangnya, memiliki kehormatan dan martabat yang harus dijaga dan dihormati oleh sesama manusia dan oleh negara. Ini adalah pengakuan Ilahi atas nilai intrinsik setiap insan.</p>
+        </div>
+    </div>
+    <div id="modal-2" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn" data-modal-id="modal-2">&times;</button>
+            <h3 class="sub-heading">Tafsir QS. Asy-Syura [42]: 38</h3>
+            <p>Ayat ini menggambarkan salah satu ciri utama komunitas Muslim yang ideal. Frasa "wa amruhum syura bainahum" (sedang urusan mereka diputuskan dengan musyawarah di antara mereka) menempatkan musyawarah bukan hanya sebagai pilihan, tetapi sebagai bagian integral dari identitas dan cara hidup mereka. Ini berlaku untuk semua urusan kolektif, mulai dari urusan keluarga hingga urusan negara. Dalam konteks politik, ayat ini menjadi dasar legitimasi bagi dewan perwakilan, parlemen, atau majelis syura di mana keputusan penting yang menyangkut hajat hidup orang banyak harus dibicarakan dan disepakati bersama, bukan diputuskan secara sepihak oleh penguasa.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const preloader = document.getElementById('preloader');
+            const header = document.querySelector('.main-header');
+            const themeToggle = document.querySelector('.theme-toggle');
+            const burgerMenu = document.querySelector('.burger-menu');
+            const navMenu = document.querySelector('.nav-menu');
+            const tafsirButtons = document.querySelectorAll('.tafsir-btn');
+            const modalCloseButtons = document.querySelectorAll('.modal-close-btn');
+            const modalOverlays = document.querySelectorAll('.modal-overlay');
+
+            // --- Preloader ---
+            window.addEventListener('load', () => {
+                preloader.style.opacity = '0';
+                preloader.style.visibility = 'hidden';
+            });
+
+            // --- Navbar Scroll Effect ---
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // --- Theme Toggler ---
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    body.classList.add('dark-theme');
+                    body.classList.remove('light-theme');
+                } else {
+                    body.classList.add('light-theme');
+                    body.classList.remove('dark-theme');
+                }
+            };
+
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            applyTheme(savedTheme);
+
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = body.classList.contains('dark-theme') ? 'dark' : 'light';
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                applyTheme(newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+
+            // --- Burger Menu ---
+            burgerMenu.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                const icon = burgerMenu.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+            
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        const icon = burgerMenu.querySelector('i');
+                        icon.classList.add('fa-bars');
+                        icon.classList.remove('fa-times');
+                    }
+                });
+            });
+
+            // --- Modal Logic ---
+            const openModal = (modalId) => {
+                const modal = document.getElementById(modalId);
+                if (modal) modal.classList.add('active');
+            };
+
+            const closeModal = (modalId) => {
+                const modal = document.getElementById(modalId);
+                if (modal) modal.classList.remove('active');
+            };
+
+            tafsirButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    openModal(button.dataset.modalId);
+                });
+            });
+
+            modalCloseButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    closeModal(button.dataset.modalId);
+                });
+            });
+
+            modalOverlays.forEach(overlay => {
+                overlay.addEventListener('click', (e) => {
+                    if (e.target === overlay) {
+                        closeModal(overlay.id);
+                    }
+                });
+            });
+
+            // --- Scroll Animation ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.hidden').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
