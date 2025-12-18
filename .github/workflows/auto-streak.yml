@@ -1,0 +1,37 @@
+name: Penjaga Streak Harian
+
+on:
+  # 1. Jalan otomatis setiap jam 07:00 WIB (00:00 UTC)
+  schedule:
+    - cron: "0 0 * * *"
+  
+  # 2. Jalan kalau kamu push manual ke main
+  push:
+    branches:
+      - main
+      
+  # 3. Tombol manual buat ngetes (biar gak nunggu besok)
+  workflow_dispatch:
+
+jobs:
+  nyalakan-lilin:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Memberi izin bot untuk menulis
+
+    steps:
+      - name: Ambil Kodingan (Checkout)
+        uses: actions/checkout@v3
+
+      - name: Update file log
+        run: |
+          # Perintah ini akan menimpa file keep_alive.txt dengan tanggal hari ini
+          date > keep_alive.txt
+
+      - name: Simpan Perubahan (Commit & Push)
+        run: |
+          git config --global user.email "bot-rajin@github.com"
+          git config --global user.name "Bot Penjaga Streak"
+          git add keep_alive.txt
+          # Cek apakah ada perubahan, kalau ada baru commit
+          git diff --quiet && git diff --staged --quiet || (git commit -m "🔥 Jaga api tetap menyala: $(date)" && git push)
