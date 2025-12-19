@@ -1,2 +1,3 @@
 # web-islam
-tugas kuliah?
+initial commit
+
