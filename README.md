@@ -129,7 +129,7 @@ Jika Anda ingin mempelajari kode sumber atau memodifikasinya di komputer Anda:
 ---
 
 <div align="center">
-  <p>Dibuat dengan ❤️ dan ☕ oleh <a href="https://github.com/excelyno">excel</a></p>
+  <p>Dibuat dengan ☕ oleh <a href="https://github.com/excelyno">excel</a></p>
   <p>
     <img src="https://img.shields.io/github/last-commit/excelyno/web-islam?style=flat&color=5d4037&labelColor=fdf6e3" />
     <img src="https://img.shields.io/github/languages/top/excelyno/web-islam?style=flat&color=8d6e63&labelColor=fdf6e3" />
