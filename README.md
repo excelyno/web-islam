@@ -91,15 +91,6 @@ Tanpa framework berat, hanya murni JS:
 </ul>
 </details>
 
----
-
-### 📸 Pratinjau (Galeri)
-
-> *Tampilan antarmuka yang menggabungkan tradisi dan modernitas.*
-
-| Desktop View | Mobile View |
-| :---: | :---: |
-| *[Masukkan Screenshot Desktop di sini]* | *[Masukkan Screenshot HP di sini]* |
 
 ---
 
