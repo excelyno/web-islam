@@ -1,7 +1,5 @@
 <div align="center">
 
-  <img src="https://media.giphy.com/media/l41lFw057lAJQMxvO/giphy.gif" width="120" style="border-radius: 50%; opacity: 0.8;" />
-
   <br><br>
 
   <h1 style="font-family: 'Amiri', serif; font-size: 3em; color: #5d4037;">⚖️ Al-Mizan</h1>
